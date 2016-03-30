@@ -1,5 +1,5 @@
 #!/bin/bash
-files="$(yad --width=600 --height=400 --file-selection --directory --title="Choose html Directory" --text="Enter html Directory" --filename="/home/robert/Dropbox/Notes")"
+files="$(yad --width=600 --height=400 --file-selection --directory --title="Choose html Directory" --text="Enter html Directory" --filename="$HOME/Dropbox/Notes")"
 
 [[ -z $files  ]] && exit 1
 
