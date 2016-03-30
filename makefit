@@ -5,7 +5,7 @@
 
 eval $(yad --width=500 --title="Make Fit" --text="Please enter the details"\
     --form --item-separator="," --field="Directory":DIR --field="Size":NUM\
-    --field="File Extension":CB "/home/robert/Pictures/" "800,100..1000,50" 'png,jpg,jpeg'\
+    --field="File Extension":CB "$HOME/Pictures/" "800,100..1000,50" 'png,jpg,jpeg'\
     | awk -F'|' '{printf "pth=%s\nSIZE=%s\nFORMAT=\"%s\"\n", $1, $2, $3}')
     
 [[ -z $SIZE || -z $FORMAT ]] && exit 1
