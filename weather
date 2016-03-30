@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cowsay -f $(locate /usr/share/cowsay/cows/*.cow | shuf -n1) `lynx -dump http://m.weather.com/weather/today/92009 | strings | grep -A3 'Now '`

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Choose a directory, size and format of input images and resize to match a specific
+# width. Only changes those larger than the width.
+
+eval $(yad --width=500 --title="Make Fit" --text="Please enter the details"\
+    --form --item-separator="," --field="Directory":DIR --field="Size":NUM\
+    --field="File Extension":CB "/home/robert/Pictures/" "800,100..1000,50" 'png,jpg,jpeg'\
+    | awk -F'|' '{printf "pth=%s\nSIZE=%s\nFORMAT=\"%s\"\n", $1, $2, $3}')
+    
+[[ -z $SIZE || -z $FORMAT ]] && exit 1
+
+find -O0 "$pth" -type f -iname "*.$FORMAT" -exec mogrify -resize $SIZE\> '{}' +

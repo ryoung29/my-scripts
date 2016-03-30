@@ -1,0 +1,17 @@
+#!/bin/bash
+
+[[ -z "$1" ]] && echo "choose file" && exit 1
+
+sed -i 's/<pre class="bash">/``` bash/g' "$1"
+sed -i 's/<pre>/```/g' "$1"
+sed -i 's/<\/pre>/```/g' "$1"
+sed -i 's/<kbd>/`/g' "$1"
+sed -i 's/<\/kbd>/`/g' "$1"
+sed -i 's/\$/\\\$/g' "$1"
+sed -i 's/<[^>]\+>//g' "$1"
+sed -i 's/\\$//g' "$1"
+sed -i 's/&nbsp;//g' "$1"
+sed -i 's/<\/?div.{0,}?>//g' "$1"
+sed -i '/^$/{ :l; N; s/^\n$//; t l; p; d; }' "$1" #Clears all but one empty line
+
+echo "file clean"
