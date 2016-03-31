@@ -1,3 +1,9 @@
 #!/bin/bash
 
-cowsay -f $(locate /usr/share/cowsay/cows/*.cow | shuf -n1) `lynx -dump http://m.weather.com/weather/today/92009 | strings | grep -A3 'Now '`
+# Emails you an ASCII art animal telling you today's weather report.  To be run daily in a cron job.
+# Requires cowsay, lynx and mailutils
+
+dt=$(date +"%Y-%m-%d-%H%M")
+
+/usr/games/cowsay -f $(locate /usr/share/cowsay/cows/*.cow | shuf -n1) `lynx -dump "http://weather.yahoo.com/united-states/url/to/location/" | grep -A1 'Today'` > weather/$dt.txt
+cat weather/$dt.txt | mail  -s "$dt Weather" user@example.com
