@@ -7,11 +7,18 @@ do
     echo -en "\e[31m"
     date
     echo "[press q to quit]"
+
     echo -en "\n\e[33mCPU Temperature: "
     cat /sys/class/thermal/thermal_zone0/temp
+
     echo -en "\n\e[32mBattery State:\n\n"
     cat /sys/bus/acpi/drivers/battery/PNP0C0A:00/power_supply/BAT0/status
     echo -en "\e[0m"
+
+    echo -en "\n\e[33mCharge remaining: "
+    now=$(cat /sys/bus/acpi/drivers/battery/PNP0C0A:00/power_supply/BAT0/charge_now)
+    full=$(cat /sys/bus/acpi/drivers/battery/PNP0C0A:00/power_supply/BAT0/charge_full)
+    echo "scale = 3; $now / $full * 100" | bc
 
     if ! read -sn 1 -t 1 cmd ; then
         continue
