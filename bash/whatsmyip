@@ -5,4 +5,4 @@ internal=$(ip addr | grep 'inet [0-9]*\..*24' | awk '{print $2}')
 echo "internal:"
 echo "$internal"
 echo "external":
-lynx --dump http://ipecho.net/plain | sed -e 's/\s//g'
+curl ifconfig.me
