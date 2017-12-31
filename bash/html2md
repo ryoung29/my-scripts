@@ -3,7 +3,7 @@ files="$(yad --width=600 --height=400 --file-selection --directory --title="Choo
 
 [[ -z $files  ]] && exit 1
 
-find "$files" -type f -name '*.html' -exec pandoc -f html {} -o {}.md \;
+find "$files" -type f -name '*.html' -exec pandoc -f html --wrap=none {} -o {}.md \;
 rename .html '' "$files"/*.md
 rm "$files"/*.html
 

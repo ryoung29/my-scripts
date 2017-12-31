@@ -5,4 +5,4 @@
 # getmd was my replacement to the markdown chrome extension since
 # I changed to Firefox
 
-xclip -o selection clipboard -t text/html | pandoc -r html -w markdown_github || echo "command failed."
+xclip -o selection clipboard -t text/html | pandoc -r html --wrap=none -w markdown_github || echo "command failed."
