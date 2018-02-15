@@ -1,10 +1,10 @@
 #!/bin/bash
 files="$(yad --width=600 --height=400 --file-selection --title="Choose Markdowns" \
---text="Enter Markdown File" --filename="$HOME/Dropbox/Notes")"
+--text="Enter Markdown File" --filename="$HOME/Documents/Code/Notes")"
 
 [[ -z $files  ]] && exit 1
 
 template="$(yad --file-selection --title="Choose Template" \
---text="Enter Markdown File" --filename="$HOME/Dropbox/Notes")"
+--text="Enter Markdown File" --filename="$HOME/Documents/Code/Notes")"
 
 pandoc --reference-odt="$template" -f markdown "$files" -o "`echo $files | sed 's/\(.*\.\)md/\1odt/'`"
